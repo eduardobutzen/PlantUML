@@ -1,0 +1,30 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+
+start
+if (Método de registro?) then (Foto)
+  :Capturar imagem;
+  :IA estima itens e macros;
+elseif (Código de barras) then
+  :Escanear código;
+  :Consultar base de alimentos;
+  if (Produto encontrado?) then (sim)
+    :Obter produto e porção real;
+  else (não)
+    :Exibir erro;
+    :Retornar para busca por nome;
+    stop
+  endif
+else (Busca)
+  :Digitar nome do alimento;
+  :Escolher alimento na lista;
+endif
+
+:Ajustar quantidade (gramas);
+:Recalcular macros;
+:Confirmar registro;
+:Salvar refeição;
+:Atualizar total do dia (metas);
+stop
+@enduml
